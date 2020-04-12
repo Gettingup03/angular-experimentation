@@ -2,6 +2,19 @@ Books : <br /><br />
 <app-library-books [books]="books"></app-library-books>
 <br />
 <hr />
+
+<!-- Content Projection through ng-content into app-library-hours -->
+<app-library-hours>
+  <ul>
+    <li>Paul Floche</li>
+    <li>Michel Clotte</li>
+    <li>Eric Druche</li>
+  </ul>
+  <span>
+    Extra infos :D 
+  </span>
+</app-library-hours>
+
 Customers :
 <ul #ul>
   <li>Paul Floche</li>
