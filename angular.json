@@ -10,7 +10,7 @@
       },
       "root": "apps/change-detection",
       "sourceRoot": "apps/change-detection/src",
-      "prefix": "angular-experimentation",
+      "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -120,6 +120,129 @@
           "options": {
             "tsConfig": ["apps/change-detection-e2e/tsconfig.e2e.json"],
             "exclude": ["**/node_modules/**", "!apps/change-detection-e2e/**"]
+          }
+        }
+      }
+    },
+    "dom-queries-api": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/dom-queries-api",
+      "sourceRoot": "apps/dom-queries-api/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/dom-queries-api",
+            "index": "apps/dom-queries-api/src/index.html",
+            "main": "apps/dom-queries-api/src/main.ts",
+            "polyfills": "apps/dom-queries-api/src/polyfills.ts",
+            "tsConfig": "apps/dom-queries-api/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/dom-queries-api/src/favicon.ico",
+              "apps/dom-queries-api/src/assets"
+            ],
+            "styles": ["apps/dom-queries-api/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/dom-queries-api/src/environments/environment.ts",
+                  "with": "apps/dom-queries-api/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "dom-queries-api:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "dom-queries-api:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "dom-queries-api:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/dom-queries-api/tsconfig.app.json",
+              "apps/dom-queries-api/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/dom-queries-api/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/dom-queries-api/jest.config.js",
+            "tsConfig": "apps/dom-queries-api/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/dom-queries-api/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "dom-queries-api-e2e": {
+      "root": "apps/dom-queries-api-e2e",
+      "sourceRoot": "apps/dom-queries-api-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/dom-queries-api-e2e/cypress.json",
+            "tsConfig": "apps/dom-queries-api-e2e/tsconfig.e2e.json",
+            "devServerTarget": "dom-queries-api:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "dom-queries-api:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/dom-queries-api-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/dom-queries-api-e2e/**"]
           }
         }
       }

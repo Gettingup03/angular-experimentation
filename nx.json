@@ -25,6 +25,13 @@
     "change-detection-e2e": {
       "tags": [],
       "implicitDependencies": ["change-detection"]
+    },
+    "dom-queries-api": {
+      "tags": []
+    },
+    "dom-queries-api-e2e": {
+      "tags": [],
+      "implicitDependencies": ["dom-queries-api"]
     }
   }
 }

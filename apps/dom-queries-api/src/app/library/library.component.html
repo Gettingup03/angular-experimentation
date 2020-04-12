@@ -1,0 +1,32 @@
+Books : <br /><br />
+<app-library-books [books]="books"></app-library-books>
+<br />
+<hr />
+Customers :
+<ul #ul>
+  <li>Paul Floche</li>
+  <li>Michel Clotte</li>
+  <li>Eric Druche</li>
+</ul>
+<br />
+<hr />
+Open hours : <br /><br />
+<ng-container [ngTemplateOutlet]="openHours"> </ng-container>
+
+<ng-template #openHours>
+  <span>Monday : 8am - 16pm</span><br />
+  <span>Friday : 8am - 16pm</span><br />
+  <span>Saturday : 8am - 16pm</span>
+</ng-template>
+<br />
+<br />
+<hr />
+
+Informations :<br /><br />
+<ng-container #vc></ng-container>
+
+<ng-template #informations>
+  <span>Information 1 : Yo 1</span><br />
+  <span>Information 2 : Yo 2</span><br />
+  <span>Information 3 : Yo 3</span>
+</ng-template>
