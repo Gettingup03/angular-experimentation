@@ -8,6 +8,7 @@ import {
   ViewRef
 } from '@angular/core';
 import { LibraryComponent } from './library/library.component';
+import { Book } from './model/book';
 
 @Component({
   selector: 'app-root',
@@ -15,10 +16,15 @@ import { LibraryComponent } from './library/library.component';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'dom-queries-api';
 
-  @ViewChild('vc', { read: ViewContainerRef, static: true })
-  vc: ViewContainerRef;
+
+  @ViewChild('vc1', { read: ViewContainerRef, static: true })
+  vc1: ViewContainerRef;
+
+  @ViewChild('vc2', { read: ViewContainerRef, static: true })
+  vc2: ViewContainerRef;
+
+  ctx = { books: [new Book('Book1','1960'), new Book('Book2','1970')]};
 
   constructor(
     private injector: Injector,
@@ -35,12 +41,12 @@ export class AppComponent implements OnInit {
     // Get the HostView of the LibraryComponent instance
     const libraryViewRef = componentRef.hostView;
     // Inserts its host view into this container.
-    this.vc.insert(libraryViewRef);
+    this.vc2.insert(libraryViewRef);
 
     // 2° Create and insert a LibraryComponent dynamically into the view container BUT this is the view container
     // which has created the component instance.
 
     // Create a LibraryComponent instance and inserts its host view into this container
-    this.vc.createComponent(factory);
+    this.vc2.createComponent(factory);
   }
 }

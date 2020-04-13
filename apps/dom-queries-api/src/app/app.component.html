@@ -1,3 +1,40 @@
-<app-library></app-library>
+<ng-template *ngIf="true" #tplOne>
+  <button class="tab-button" (click)="(0)">LOGIN</button><br />
+  <button class="tab-button" (click)="(0)">SIGNUP</button>
+</ng-template>
+<br />
+<hr />
 
-<ng-container #vc></ng-container>
+<ng-template [ngIf]="true" #tplTwo>
+  <button class="tab-button" (click)="(0)">LOGIN</button><br />
+  <button class="tab-button" (click)="(0)">SIGNUP</button>
+</ng-template>
+
+<br />
+<hr />
+
+<ng-template #tplWithContext let-books="books">
+  <div *ngFor="let book of books">
+    <span>Name : {{ book.name }} </span><br />
+    <span>Year : {{ book.year }} </span><br />
+  </div>
+</ng-template>
+<br />
+<hr />
+
+<div *ngIf="true">
+  <span>*ngIf directive on Div</span>
+</div>
+<br />
+<hr />
+
+<div *ngIf="true">
+  <ng-template>*ngIf on DIV but with ng-template into the DIV</ng-template>
+</div>
+<br />
+<hr />
+
+<ng-container *ngTemplateOutlet="tplWithContext; context: ctx"></ng-container>
+
+<app-library></app-library>
+<ng-container #vc1></ng-container>
